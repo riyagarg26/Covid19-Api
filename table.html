@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>India states</title>
+  <!-- Bootstrap CSS 4.3.1 -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <!-- Axios -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+  <!-- VueJS -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+ <body style="background-color: cornsilk;">
+  <div class="container mt-4" id="app">
+
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">State</th>
+          <th scope="col">District</th>
+          <th scope="col">District Code</th>
+          <th scope="col">Active</th>
+          <th scope="col">Recovered</th>
+          <th scope="col">Confirmed</th>
+
+      
+      
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(zone, index) in  zones">
+          <th scope="row">{{ index + 1 }}</th>
+          <td>{{ zone.state}}</td>
+          <td>{{ zone.districtData[0].district }}</td>
+          <td>{{ zone. statecode}}</td>
+          <td>{{ zone.districtData[0].active}}</td>
+          <td>{{ zone.districtData[0].recovered}}</td>
+          <td>{{ zone.districtData[0].confirmed}}</td>
+       
+       
+       
+          
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <script>
+   
+
+  
+     const url= 'https://api.covid19india.org/v2/state_district_wise.json'
+    var app = new Vue({
+      el: '#app',
+      data: {
+       zones: [],
+        
+      },
+      
+      mounted: function() {
+       
+        axios.get(url)
+            .then(response => {
+              this.zones = response.data;
+           
+              console.log(response);
+            })
+            .catch(error => {
+              console.log(error);
+            });
+            
+      }
+    })
+  
+  </script>
+
+</body>
+</html>

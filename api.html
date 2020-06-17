@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=\, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    
+
+    <title>Graph</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+  </head>
+  <body style="background-image: url();">
+  
+    <canvas id="myChart" width="400" height="400"></canvas>
+    
+
+  
+  
+      <script>
+          const api_url='https://api.covid19india.org/csv/latest/state_wise.csv';
+
+          
+      window.addEventListener('load', setup);
+
+      async function setup() {
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const globalTemps = await getdata();
+        const myChart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: globalTemps.state,
+            datasets: [
+              {
+                label: ' confirmed cases in States in India',
+                data: globalTemps.confirmed,
+                fill: false,
+                borderColor: 'rgba(255, 99, 132, 1)',
+                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                borderWidth: 1
+              },
+              {
+                label: ' Recovered cases in States in India',
+                data: globalTemps.recovered,
+                fill: false,
+                borderColor: 'rgba( 99, 132,255, 1)',
+                backgroundColor: 'rgba(99, 132,255, 1)',
+                borderWidth: 1
+              },
+              {
+                label: ' Death cases in States in India',
+                data: globalTemps.deaths,
+                fill: false,
+                borderColor: 'rgba( 99, 90,100, 1)',
+                backgroundColor: 'rgba(99, 90,100, 1)',
+                borderWidth: 1
+              },
+              
+            ]
+          },
+          options:{
+            scales:{
+              yAxes:[{
+                ticks:{
+
+                  min:0,
+                  max:220000,
+                  stepSize:10000
+                }
+              }]
+              
+
+            }
+
+          }
+         
+        });
+      }
+
+          
+          async function getdata() {
+                   
+     const response = await fetch(api_url);
+
+        const data = await response.text();
+      
+        const state = [];
+        const confirmed= [];
+        const recovered=[];
+        const deaths=[];
+        const rows = data.split('\n').slice(1);
+        delete rows[3];
+        delete rows[5];
+        delete rows[22];
+        delete rows[35];
+        delete rows[39];
+        rows.forEach(row => {
+          const cols = row.split(',');
+          console.log(cols)
+          state.push(cols[0]);
+          confirmed.push(cols[1]);
+          recovered.push(cols[2]);
+          deaths.push(cols[3])
+        });
+        return { state, confirmed ,recovered,deaths};
+      }
+          
+
+    </script>
+  </body>
+</html>

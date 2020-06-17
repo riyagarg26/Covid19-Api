@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=\, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!-- <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+      integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+      integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+      crossorigin=""
+    ></script> -->
+    <!-- <style>
+      #issMap {
+        height: 180px;
+      } -->
+    <!-- </style> -->
+
+    <title>API</title>
+  </head>
+  <body>
+    <h1>Daily update<h1>
+
+    <p>
+      Total confirmed: <span id="lat"></span><br />
+     total deaths: <span id="lon"></span><br>
+     Total recovered:<span id="rec"></span>
+    </p>
+
+    <script>
+        const api_url = 'https://api.covid19api.com/world/total';
+
+    
+      async function getdata() {
+        const response = await fetch(api_url);
+        const data = await response.json();
+        const { TotalConfirmed, TotalDeaths,TotalRecovered } = data;
+
+        // marker.setLatLng([latitude, longitude]);
+        // if (firstTime) {
+        //   mymap.setView([latitude, longitude], 2);
+        //   firstTime = false;
+        // }
+        document.getElementById('lat').textContent = TotalConfirmed;
+        document.getElementById('lon').textContent = TotalDeaths;
+        document.getElementById('rec').textContent = TotalRecovered;
+      }
+
+      getdata();
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+   <!-- Basic -->
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <!-- Mobile Metas -->
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+   <!-- Site Metas -->
+   <title>COVID-19-India</title>
+   <meta name="keywords" content="">
+   <meta name="description" content="">
+   <meta name="author" content="">
+   <!-- Site Icons -->
+   
+   <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="css/bootstrap.min.css">
+   <!-- Site CSS -->
+   <link rel="stylesheet" href="style.css">
+   <!-- Colors CSS -->
+   <link rel="stylesheet" href="css/colors.css">
+   <!-- ALL VERSION CSS -->
+   <link rel="stylesheet" href="css/versions.css">
+   <!-- Responsive CSS -->
+   <link rel="stylesheet" href="css/responsive.css">
+   <!-- Custom CSS -->
+   <link rel="stylesheet" href="css/custom.css">
+   <!-- Modernizer for Portfolio -->
+   <script src="js/modernizer.js"></script>
+   <!-- [if lt IE 9] -->
+   </head>
+   <body class="clinic_version">
+      <!-- LOADER -->
+    
+      <!-- END LOADER -->
+      <h1 style="text-align: center;"> <b></b></h1>
+              
+         <div class="header-bottom wow fadeIn">
+            <div class="container">
+               <nav class="main-menu">
+                  <div class="navbar-header">
+                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i class="fa fa-bars" aria-hidden="true"></i></button>
+                  </div>
+				  
+                  <div id="navbar" class="navbar-collapse collapse">
+                     <ul class="nav navbar-nav">
+
+                        <li><a class="active" href="index.html">Home</a></li>
+                        
+                        <li><a data-scroll href="table.html">State-wise Data</a></li>
+                        <li><a data-scroll href="api.html">Graphical Comparison</a></li>
+                        <li><a data-scroll href="quiz.html">Quiz</a></li>
+                        
+                     </ul>
+                  </div>
+               </nav>
+               <div class="serch-bar">
+                  <div id="custom-search-input">
+                     <div class="input-group col-md-12">
+                        <input type="text" class="form-control input-lg" placeholder="Search" />
+                        <span class="input-group-btn">
+                        <button class="btn btn-info btn-lg" type="button">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                        </button>
+                        </span>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+      </header><br>
+      <p style="color: black; text-align: center;">
+         <b>Total confirmed: <span id="lat"></span><br />
+        Total deaths: <span id="lon"></span><br>
+        Total recovered:<span id="rec"></span></b>
+       </p>
+         
+      
+<script>
+const api_url = 'https://api.covidindiatracker.com/total.json';
+
+    
+async function getdata() {
+  const response = await fetch(api_url);
+  const data = await response.json();
+  const { confirmed, deaths,recovered } = data;
+
+  // marker.setLatLng([latitude, longitude]);
+  // if (firstTime) {
+  //   mymap.setView([latitude, longitude], 2);
+  //   firstTime = false;
+  // }
+  document.getElementById('lat').textContent = confirmed;
+  document.getElementById('lon').textContent = deaths;
+  document.getElementById('rec').textContent = recovered;
+}
+
+getdata();
+</script>
+
+
+
+      <div id="service" >
+         <div class="container" style="background-image: url(https://img.freepik.com/free-photo/medical-mask-protective-mask-background-disposable-surgical-face-mask-cover-mouth-nose-mask-medical-healthcare-medical-protect-against-viruses-covid-19-coronavirus-dust_73523-3958.jpg?size=626&ext=jpg); background-size: cover;">
+            <div class="row">
+               <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+                  <div class="inner-services">
+                     <h1 style="color: cornsilk;"><b> PREVENTIVE MEASURES (Advice for Public)</b></h1>
+                     <br>
+                     <p style="color: black;"> <b>You can reduce your chances of being infected or spreading COVID-19 by taking some simple precautions:</b><br><br>
+
+                      1.  Regularly and thoroughly clean your hands with an alcohol-based hand rub or wash them with soap and water. <b>Why?</b> 
+                      
+                      Washing your hands with soap and water or using alcohol-based hand rub kills viruses that may be on your hands.<br>
+                       2. Maintain at least 1 metre (3 feet) distance between yourself and others. <b>Why?</b> When someone coughs, sneezes, or speaks they spray small liquid droplets from their nose or mouth which may contain virus. If you are too close, you can breathe in the droplets, including the COVID-19 virus if the person has the disease.<br>
+
+                        3.Avoid going to crowded places. <b>Why?</b> Where people come together in crowds, you are more likely to come into close contact with someone that has COIVD-19 and it is more difficult to maintain physical distance of 1 metre (3 feet).<br>
+
+                       4. Avoid touching eyes, nose and mouth. <b>Why?</b> Hands touch many surfaces and can pick up viruses. Once contaminated, hands can transfer the virus to your eyes, nose or mouth. From there, the virus can enter your body and infect you.<br>
+                      
+
+                       5. Stay home and self-isolate even with minor symptoms such as cough, headache, mild fever, until you recover. Have someone bring you supplies. If you need to leave your house, wear a mask to avoid infecting others. <b>Why?</b> Avoiding contact with others will protect them from possible COVID-19 and other viruses.</p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+
+               <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                  
+	  <!-- doctor -->
+	  
+	  
+     
+   </body>
+</html>
